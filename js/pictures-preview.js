@@ -6,11 +6,11 @@ const randomUserTemplate = document.querySelector('#picture').content.querySelec
 
 const usersPreviews = arrayOfObjects;
 
-usersPreviews.forEach((preview) => {
+usersPreviews.forEach(({url, likes, comments}) => {
   const previewElement = randomUserTemplate.cloneNode(true);
-  previewElement.querySelector('.picture__img').src = preview.url;
-  previewElement.querySelector('.picture__likes').textContent = preview.likes;
-  previewElement.querySelector('.picture__comments').textContent = preview.comments.length;
+  previewElement.querySelector('.picture__img').src = url;
+  previewElement.querySelector('.picture__likes').textContent = likes;
+  previewElement.querySelector('.picture__comments').textContent = comments.length;
   usersPreviewsFragment.appendChild(previewElement);
 });
 
