@@ -4,6 +4,7 @@ const DESCRIPTIONS = ['Как вам?', 'Моя гордость!', 'Хочу п
 const MESSAGES = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 const NAMES = ['Вова', 'Пётр', 'Женя', 'Зина', 'Катя', 'Айгюль'];
 const arrayOfObjects = [];
+let commentsArray = [];
 
 for (let index1 = 0; index1 <= OBJECTS_AMOUNT - 1; index1 ++) {
   descriptionsId[index1] = index1 + 1;
@@ -18,7 +19,7 @@ for (let index2 = 0; index2 <= OBJECTS_AMOUNT - 1; index2++) {
       name: NAMES[_.random(0, NAMES.length - 1)],
     });
 
-  const commentsArray = Array.from({ length: _.random(1, 10) }, createComments);
+  commentsArray = Array.from({ length: _.random(1, 10) }, createComments);
   const generateObjects = () =>
     ({
       id: descriptionsId[index2],
