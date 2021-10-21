@@ -13,7 +13,6 @@ const commentItem = commentsContainer.querySelector('.social__comment');
 const usersCommentsFragment = document.createDocumentFragment();
 const commentsInfo = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
-let currentCommentsArray;
 
 picturesContainer.addEventListener('click', (evtClick) => {
 
@@ -29,7 +28,7 @@ picturesContainer.addEventListener('click', (evtClick) => {
 
   arrayOfObjects.forEach((dataObject) => {
     if (evtClick.target.src.includes(dataObject.url)) {
-      currentCommentsArray = dataObject.comments;
+      const currentCommentsArray = dataObject.comments;
       currentCommentsArray.forEach(({avatar, name, message}) => {
         const newComment = commentItem.cloneNode(true);
         newComment.querySelector('.social__picture').src = avatar;
