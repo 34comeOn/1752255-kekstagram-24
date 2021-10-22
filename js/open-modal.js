@@ -14,8 +14,18 @@ const usersCommentsFragment = document.createDocumentFragment();
 const commentsInfo = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 
-picturesContainer.addEventListener('click', (evtClick) => {
+const onModalEscKeydown = (evtClose) => {
+  if (isEscapeKey(evtClose) ) {
+    evtClose.preventDefault();
+    closePicture(bigPicture, commentsContainer);
+  }
+};
 
+function closeUserModal () {
+  document.removeEventListener('keydown', onModalEscKeydown);
+}
+
+picturesContainer.addEventListener('click', (evtClick) => {
   bigPicture.classList.remove('hidden');
   document.body.classList.add('modal-open');
   commentsInfo.classList.add('hidden');
@@ -46,14 +56,10 @@ picturesContainer.addEventListener('click', (evtClick) => {
 
   bigPictureCloseElement.addEventListener('click', () => {
     closePicture(bigPicture, commentsContainer);
+    closeUserModal();
   });
 
-  document.addEventListener('keydown', (evtClose) => {
-    if (isEscapeKey(evtClose) ) {
-      evtClose.preventDefault();
-      closePicture(bigPicture, commentsContainer);
-    }
-  });
+  document.addEventListener('keydown', onModalEscKeydown);
 });
 
 export {bigPicture};
