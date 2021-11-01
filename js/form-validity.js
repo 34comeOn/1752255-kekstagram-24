@@ -48,7 +48,7 @@ hashtagInput.addEventListener('input', () => {
     if (!hashtagRe.test(hashtag) || hashtagInputArray.length > MAX_HASHTAG_AMOUNT || booleanHashtagInputArray.includes(false) || comparingResults.includes('true')) {
       postButton.setAttribute('disabled', 'disabled');
     } else {
-      postButton.removeAttribute('disabled', 'disabled');
+      postButton.removeAttribute('disabled');
     }
 
     if (!hashtagStartRe.test(hashtag)) {
@@ -75,7 +75,7 @@ commentInput.addEventListener('input', () => {
   if (commentInput.value.length > MAX_COMMENT_LENGTH) {
     postButton.setAttribute('disabled', 'disabled');
   } else {
-    postButton.removeAttribute('disabled', 'disabled');
+    postButton.removeAttribute('disabled');
   }
 });
 
