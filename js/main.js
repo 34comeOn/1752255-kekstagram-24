@@ -5,3 +5,4 @@ import './pictures-preview.js';
 import './open-modal.js';
 import './load-form.js';
 import './form-validity.js';
+import './comments-count.js';
