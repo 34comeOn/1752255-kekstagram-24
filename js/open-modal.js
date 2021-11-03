@@ -10,9 +10,8 @@ const likesCount = bigPicture.querySelector('.likes-count');
 const commentsCount = bigPicture.querySelector('.comments-count');
 const commentsContainer = document.querySelector('.social__comments');
 const commentItem = commentsContainer.querySelector('.social__comment');
+const commentItems = commentsContainer.querySelectorAll('.social__comment');
 const usersCommentsFragment = document.createDocumentFragment();
-const commentsInfo = bigPicture.querySelector('.social__comment-count');
-const commentsLoader = bigPicture.querySelector('.comments-loader');
 
 const onModalEscKeydown = (evtClose) => {
   if (isEscapeKey(evtClose)) {
@@ -24,14 +23,13 @@ const onModalEscKeydown = (evtClose) => {
 function closeUserModal () {
   document.removeEventListener('keydown', onModalEscKeydown);
 }
+commentsContainer.removeChild(commentItems[0]);
+commentsContainer.removeChild(commentItems[1]);
 
 picturesContainer.addEventListener('click', (evtClick) => {
   if (evtClick.target.classList.value.includes('picture__img')) {
     bigPicture.classList.remove('hidden');
     document.body.classList.add('modal-open');
-    commentsInfo.classList.add('hidden');
-    commentsLoader.classList.add('hidden');
-
 
     picImage.children[0].src = evtClick.target.src;
     likesCount.textContent = evtClick.target.closest('.picture').querySelector('.picture__likes').textContent;
