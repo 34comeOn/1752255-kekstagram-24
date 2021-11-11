@@ -1,7 +1,8 @@
-import { picturesContainer } from './pictures-preview.js';
+import { picturesContainer } from './open-modal.js';
+import {commentsContainer} from './open-modal.js';
+
 const COMMENTS_NOT_MORE_THEN = 6;
 const MAX_COMMENTS_COLLECTION_INDEX = 4;
-const commentsContainer = document.querySelector('.social__comments');
 const loadCommentsButton = document.querySelector('.comments-loader');
 const commentsShownNumber = document.querySelector('.comments-shown');
 
@@ -25,6 +26,23 @@ const disableCommentsButton = () => {
   }
 };
 
+const getMoreFiveComments = () => {
+
+  collectOnlyHiddenComments();
+  if (collectOnlyHiddenComments().length < COMMENTS_NOT_MORE_THEN) {
+    for (let y = collectOnlyHiddenComments().length - 1; y >= 0; y --) {
+      collectOnlyHiddenComments()[y].classList.remove('hidden');
+    }
+  } else {
+    const currentLength = collectOnlyHiddenComments().length - 5;
+    for (let y = collectOnlyHiddenComments().length - 1; y >= currentLength; y --) {
+      collectOnlyHiddenComments()[y].classList.remove('hidden');
+    }
+  }
+  getShownCommentsNumber();
+  disableCommentsButton();
+};
+
 picturesContainer.addEventListener('click', () => {
   collectAllComments().forEach((comment) => {
     comment.classList.add('hidden');
@@ -42,21 +60,8 @@ picturesContainer.addEventListener('click', () => {
 
   getShownCommentsNumber();
 
-  loadCommentsButton.addEventListener('click', () => {
-    collectOnlyHiddenComments();
-    if (collectOnlyHiddenComments().length < COMMENTS_NOT_MORE_THEN) {
-      for (let y = collectOnlyHiddenComments().length - 1; y >= 0; y --) {
-        collectOnlyHiddenComments()[y].classList.remove('hidden');
-      }
-    } else {
-      for (let y = 0; y <= MAX_COMMENTS_COLLECTION_INDEX; y++) {
-        collectOnlyHiddenComments()[y].classList.remove('hidden');
-      }
-    }
-
-    getShownCommentsNumber();
-    disableCommentsButton();
-  });
+  loadCommentsButton.addEventListener('click', getMoreFiveComments);
 
   disableCommentsButton();
 });
+
