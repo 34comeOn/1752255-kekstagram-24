@@ -26,6 +26,10 @@ const getStyleName = () => {
   return prefix;
 };
 
+const hideSlider = () => {
+  sliderElement.classList.add('visually-hidden');
+};
+
 uploadImage.classList.add('effects__preview--none');
 sliderElement.classList.add('visually-hidden');
 
@@ -120,3 +124,5 @@ sliderElement.noUiSlider.on('update', (_, handle, unencoded) => {
   effectLevelValue.value = uploadImage.style.filter;
   effectInputData.value = uploadImage.style.filter;
 });
+
+export {hideSlider};

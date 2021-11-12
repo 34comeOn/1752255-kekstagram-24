@@ -16,5 +16,4 @@ const closeForm = function (form) {
   uploadPicture[0].src = '';
 };
 
-export {closePicture};
-export {closeForm};
+export {closePicture, closeForm};
