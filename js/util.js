@@ -1,3 +1,5 @@
+import { hideFilters } from './filters.js';
+
 const isEscapeKey = (evt) => (
   evt.key === 'Escape'
 );
@@ -27,6 +29,7 @@ const showAlert = (message) => {
   alertContainer.textContent = message;
 
   document.body.append(alertContainer);
+  hideFilters();
 };
 
 export {isEscapeKey, isFocusIn, isFocusOut, showAlert};

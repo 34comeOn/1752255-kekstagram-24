@@ -4,10 +4,10 @@ import { isFocusIn } from './util.js';
 import { isFocusOut } from './util.js';
 import { hashtagInput } from './form-validity.js';
 import { commentInput } from './form-validity.js';
-import {sendData} from './api.js';
-import {hideSlider} from './image-filters.js';
-import {renderSuccessMessage} from './load-messages.js';
-import {renderErrorMessage} from './load-messages.js';
+import { sendData } from './api.js';
+import { hideSlider } from './image-effects.js';
+import { renderSuccessMessage } from './load-messages.js';
+import { renderErrorMessage } from './load-messages.js';
 
 const imageForm = document.querySelector('.img-upload__form');
 const loadButton = imageForm.querySelector('#upload-file');

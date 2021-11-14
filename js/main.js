@@ -6,8 +6,10 @@ import './load-form.js';
 import './form-validity.js';
 import './comments-count.js';
 import './image-scale.js';
-import './image-filters.js';
+import './image-effects.js';
 import './api.js';
+import './filters.js';
+import './sorting.js';
 
 import { renderPicturesList } from './pictures-preview.js';
 import { setImageFormSubmit } from './load-form.js';
