@@ -1,5 +1,6 @@
 import {commentItem} from './open-modal.js';
 import { picturesContainer } from './open-modal.js';
+import { showFilters } from './filters-buttons.js';
 
 const usersPreviewsFragment = document.createDocumentFragment();
 const randomUserTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -7,6 +8,11 @@ const randomUserTemplate = document.querySelector('#picture').content.querySelec
 const usersCommentsFragment = document.createDocumentFragment();
 
 const renderPicturesList = (arrayOfObjects) => {
+  const alreadyRenderedPictures = picturesContainer.querySelectorAll('.picture');
+
+  for (let i = alreadyRenderedPictures.length - 1; i >= 0; i--) {
+    picturesContainer.removeChild(alreadyRenderedPictures[i]);
+  }
 
   arrayOfObjects.forEach(({url, likes, comments, id}) => {
     const previewElement = randomUserTemplate.cloneNode(true);
@@ -16,7 +22,6 @@ const renderPicturesList = (arrayOfObjects) => {
     previewElement.querySelector('.picture__comments').textContent = comments.length;
     previewElement.querySelector('.picture__id').textContent = id;
     usersPreviewsFragment.appendChild(previewElement);
-    picturesContainer.appendChild(usersPreviewsFragment);
 
     comments.forEach(({avatar, name, message}) => {
       const newComment = commentItem.cloneNode(true);
@@ -26,8 +31,11 @@ const renderPicturesList = (arrayOfObjects) => {
       newComment.querySelector('.id__link').textContent = previewElement.querySelector('.picture__id').textContent;
       usersCommentsFragment.appendChild(newComment);
     });
-
   });
+
+  picturesContainer.appendChild(usersPreviewsFragment);
+
+  showFilters();
 };
 
 export {renderPicturesList, usersCommentsFragment};
