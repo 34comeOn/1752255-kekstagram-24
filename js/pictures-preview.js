@@ -1,7 +1,6 @@
 import {commentItem} from './open-modal.js';
 import { picturesContainer } from './open-modal.js';
-import { showFilters } from './filters.js';
-import { sortRenderedPictures } from './sorting.js';
+import { showFilters } from './filters-buttons.js';
 
 const usersPreviewsFragment = document.createDocumentFragment();
 const randomUserTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -9,10 +8,11 @@ const randomUserTemplate = document.querySelector('#picture').content.querySelec
 const usersCommentsFragment = document.createDocumentFragment();
 
 const renderPicturesList = (arrayOfObjects) => {
+  const alreadyRenderedPictures = picturesContainer.querySelectorAll('.picture');
 
-  console.log(arrayOfObjects);
-  sortRenderedPictures(arrayOfObjects);
-  console.log(arrayOfObjects);
+  for (let i = alreadyRenderedPictures.length - 1; i >= 0; i--) {
+    picturesContainer.removeChild(alreadyRenderedPictures[i]);
+  }
 
   arrayOfObjects.forEach(({url, likes, comments, id}) => {
     const previewElement = randomUserTemplate.cloneNode(true);
@@ -33,7 +33,6 @@ const renderPicturesList = (arrayOfObjects) => {
     });
   });
 
-  picturesContainer.innerHTML = '';
   picturesContainer.appendChild(usersPreviewsFragment);
 
   showFilters();
