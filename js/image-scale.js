@@ -1,26 +1,27 @@
-
-const scaleButtonSmaller = document.querySelector('.scale__control--smaller');
-const scaleButtonBigger = document.querySelector('.scale__control--bigger');
-const scaleValue = document.querySelector('.scale__control--value');
-const previewImageContainer = document.querySelector('.img-upload__preview');
-const scaleInputData = document.querySelector('.scale__control--hidden');
+const scaleButtonSmallerElement = document.querySelector('.scale__control--smaller');
+const scaleButtonBiggerElement = document.querySelector('.scale__control--bigger');
+const scaleValueElement = document.querySelector('.scale__control--value');
+const previewImageContainerElement = document.querySelector('.img-upload__preview');
+const scaleInputDataElement = document.querySelector('.scale__control--hidden');
+const SCALE_STEP = 25;
+const SCALE_COEFFICIENT = 100;
 
 const changeImageScale = () => {
-  scaleInputData.value = previewImageContainer.children[0].style.transform = `scale(${scaleValue.value/100})`;
+  scaleInputDataElement.value = previewImageContainerElement.children[0].style.transform = `scale(${scaleValueElement.value/SCALE_COEFFICIENT})`;
 };
 
-scaleButtonBigger.addEventListener('click', () => {
-  scaleValue.value += 25;
+scaleButtonBiggerElement.addEventListener('click', () => {
+  scaleValueElement.value += SCALE_STEP;
   changeImageScale();
 });
 
-scaleButtonSmaller.addEventListener('click', () => {
-  scaleValue.value -= 25;
+scaleButtonSmallerElement.addEventListener('click', () => {
+  scaleValueElement.value -= SCALE_STEP;
   changeImageScale();
 });
 
-scaleValue.addEventListener('input', () => {
+scaleValueElement.addEventListener('input', () => {
   changeImageScale();
 });
 
-export {previewImageContainer};
+export {previewImageContainerElement};

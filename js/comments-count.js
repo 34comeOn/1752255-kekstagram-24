@@ -1,28 +1,29 @@
-import { picturesContainer } from './open-modal.js';
-import {commentsContainer} from './open-modal.js';
+import { picturesContainerElement } from './open-modal.js';
+import {commentsContainerElement} from './open-modal.js';
 
 const COMMENTS_NOT_MORE_THEN = 6;
 const MAX_COMMENTS_COLLECTION_INDEX = 4;
-const loadCommentsButton = document.querySelector('.comments-loader');
-const commentsShownNumber = document.querySelector('.comments-shown');
+
+const loadCommentsButtonElementElement = document.querySelector('.comments-loader');
+const commentsShownNumberElementElement = document.querySelector('.comments-shown');
 
 const collectAllComments = () => (
-  commentsContainer.querySelectorAll('.social__comment')
+  commentsContainerElement.querySelectorAll('.social__comment')
 );
 
 const collectOnlyHiddenComments = () => (
-  commentsContainer.querySelectorAll('.hidden')
+  commentsContainerElement.querySelectorAll('.hidden')
 );
 
 const getShownCommentsNumber = () => {
-  commentsShownNumber.textContent = collectAllComments().length - collectOnlyHiddenComments().length;
+  commentsShownNumberElementElement.textContent = collectAllComments().length - collectOnlyHiddenComments().length;
 };
 
 const disableCommentsButton = () => {
   if (collectOnlyHiddenComments().length < 1) {
-    loadCommentsButton.setAttribute('disabled', 'disabled');
+    loadCommentsButtonElementElement.setAttribute('disabled', 'disabled');
   } else {
-    loadCommentsButton.removeAttribute('disabled');
+    loadCommentsButtonElementElement.removeAttribute('disabled');
   }
 };
 
@@ -43,7 +44,7 @@ const getMoreFiveComments = () => {
   disableCommentsButton();
 };
 
-picturesContainer.addEventListener('click', () => {
+picturesContainerElement.addEventListener('click', () => {
   collectAllComments().forEach((comment) => {
     comment.classList.add('hidden');
   });
@@ -60,8 +61,7 @@ picturesContainer.addEventListener('click', () => {
 
   getShownCommentsNumber();
 
-  loadCommentsButton.addEventListener('click', getMoreFiveComments);
+  loadCommentsButtonElementElement.addEventListener('click', getMoreFiveComments);
 
   disableCommentsButton();
 });
-

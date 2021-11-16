@@ -1,11 +1,11 @@
-import { previewImageContainer } from './image-scale.js';
+import { previewImageContainerElement } from './image-scale.js';
 import '../nouislider/nouislider.js';
 
-const filtersContainer = document.querySelector('.effects__list');
-const sliderElement = document.querySelector('.effect-level__slider');
-const effectLevelValue = document.querySelector('.effect-level__value');
-const effectInputData = document.querySelector('.effect-level__data');
-const uploadImage = previewImageContainer.children[0];
+const filtersContainerElement = document.querySelector('.effects__list');
+const sliderElementElement = document.querySelector('.effect-level__slider');
+const effectLevelValueElement = document.querySelector('.effect-level__value');
+const effectInputDataElement = document.querySelector('.effect-level__data');
+const uploadImage = previewImageContainerElement.children[0];
 let prefix;
 
 const getStyleName = () => {
@@ -27,13 +27,13 @@ const getStyleName = () => {
 };
 
 const hideSlider = () => {
-  sliderElement.classList.add('visually-hidden');
+  sliderElementElement.classList.add('visually-hidden');
 };
 
 uploadImage.classList.add('effects__preview--none');
-sliderElement.classList.add('visually-hidden');
+sliderElementElement.classList.add('visually-hidden');
 
-noUiSlider.create(sliderElement, {
+noUiSlider.create(sliderElementElement, {
   range: {
     min: 0,
     max: 1,
@@ -41,18 +41,18 @@ noUiSlider.create(sliderElement, {
   start: 0,
 });
 
-filtersContainer.addEventListener('change', (evtChooseFilter) => {
+filtersContainerElement.addEventListener('change', (evtChooseFilter) => {
   uploadImage.classList.remove(uploadImage.classList);
   uploadImage.classList.add(`effects__preview--${evtChooseFilter.target.id.split('-')[1]}`);
 
   if (uploadImage.classList[0].includes('none')) {
-    sliderElement.classList.add('visually-hidden');
+    sliderElementElement.classList.add('visually-hidden');
   } else {
-    sliderElement.classList.remove('visually-hidden');
+    sliderElementElement.classList.remove('visually-hidden');
   }
 
   if (evtChooseFilter.target.id.includes('chrome')) {
-    sliderElement.noUiSlider.updateOptions({
+    sliderElementElement.noUiSlider.updateOptions({
       range: {
         min: 0,
         max: 1,
@@ -60,10 +60,10 @@ filtersContainer.addEventListener('change', (evtChooseFilter) => {
       step: 0.1,
       start: 1,
     });
-    sliderElement.noUiSlider.set(1);
+    sliderElementElement.noUiSlider.set(1);
   }
   else if (evtChooseFilter.target.id.includes('sepia')) {
-    sliderElement.noUiSlider.updateOptions({
+    sliderElementElement.noUiSlider.updateOptions({
       range: {
         min: 0,
         max: 1,
@@ -71,10 +71,10 @@ filtersContainer.addEventListener('change', (evtChooseFilter) => {
       start: 1,
       step: 0.1,
     });
-    sliderElement.noUiSlider.set(1);
+    sliderElementElement.noUiSlider.set(1);
 
   } else if (evtChooseFilter.target.id.includes('marvin')) {
-    sliderElement.noUiSlider.updateOptions({
+    sliderElementElement.noUiSlider.updateOptions({
       range: {
         min: 0,
         max: 100,
@@ -82,10 +82,10 @@ filtersContainer.addEventListener('change', (evtChooseFilter) => {
       start: 100,
       step: 1,
     });
-    sliderElement.noUiSlider.set(100);
+    sliderElementElement.noUiSlider.set(100);
 
   } else if (evtChooseFilter.target.id.includes('phobos')) {
-    sliderElement.noUiSlider.updateOptions({
+    sliderElementElement.noUiSlider.updateOptions({
       range: {
         min: 0,
         max: 3,
@@ -93,10 +93,10 @@ filtersContainer.addEventListener('change', (evtChooseFilter) => {
       start: 3,
       step: 0.1,
     });
-    sliderElement.noUiSlider.set(3);
+    sliderElementElement.noUiSlider.set(3);
 
   } else if (evtChooseFilter.target.id.includes('heat')) {
-    sliderElement.noUiSlider.updateOptions({
+    sliderElementElement.noUiSlider.updateOptions({
       range: {
         min: 1,
         max: 3,
@@ -104,14 +104,14 @@ filtersContainer.addEventListener('change', (evtChooseFilter) => {
       start: 3,
       step: 0.1,
     });
-    sliderElement.noUiSlider.set(3);
+    sliderElementElement.noUiSlider.set(3);
 
   } else {
-    sliderElement.noUiSlider.set(0);
+    sliderElementElement.noUiSlider.set(0);
   }
 });
 
-sliderElement.noUiSlider.on('update', (_, handle, unencoded) => {
+sliderElementElement.noUiSlider.on('update', (_, handle, unencoded) => {
   if (uploadImage.classList[0].includes('phobos')) {
     uploadImage.style.filter = `${getStyleName()}(${unencoded[handle]}px)`;
   } else if (uploadImage.classList[0].includes('marvin')) {
@@ -121,8 +121,8 @@ sliderElement.noUiSlider.on('update', (_, handle, unencoded) => {
   } else {
     uploadImage.style.filter = `${getStyleName()}(${unencoded[handle]})`;
   }
-  effectLevelValue.value = uploadImage.style.filter;
-  effectInputData.value = uploadImage.style.filter;
+  effectLevelValueElement.value = uploadImage.style.filter;
+  effectInputDataElement.value = uploadImage.style.filter;
 });
 
 export {hideSlider};

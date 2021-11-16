@@ -1,7 +1,7 @@
 import { isEscapeKey } from './util.js';
 
-const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
+const successMessageTemplateElement = document.querySelector('#success').content.querySelector('.success');
+const errorMessageTemplateElement = document.querySelector('#error').content.querySelector('.error');
 
 const removeSuccessMessage = () => {
   document.body.removeChild(document.body.querySelector('.success'));
@@ -25,24 +25,22 @@ const onErrorMessageEscKeydown = (evtClose) => {
   }
 };
 
-function closeSuccessMessage () {
+const closeSuccessMessage = () => {
   document.removeEventListener('keydown', onSuccessMessageEscKeydown);
   removeSuccessMessage();
-}
+};
 
-function closeErrorMessage () {
+const closeErrorMessage = () => {
   document.removeEventListener('keydown', onErrorMessageEscKeydown);
   removeErrorMessage();
-}
-
+};
 
 const renderSuccessMessage = () => {
-  const successMessage = successMessageTemplate.cloneNode(true);
-  const successMessageAroundArea = document.querySelector('.success');
-
+  const successMessage = successMessageTemplateElement.cloneNode(true);
   document.body.appendChild(successMessage);
+  const successMessageAroundAreaElement = document.querySelector('.success');
 
-  successMessageAroundArea.addEventListener('click', () => {
+  successMessageAroundAreaElement.addEventListener('click', () => {
     closeSuccessMessage();
   });
 
@@ -50,19 +48,16 @@ const renderSuccessMessage = () => {
 
 };
 
-
 const renderErrorMessage = () => {
-  const errorMessage = errorMessageTemplate.cloneNode(true);
-  const errorMessageAroundArea = document.querySelector('.error');
-
+  const errorMessage = errorMessageTemplateElement.cloneNode(true);
   document.body.appendChild(errorMessage);
+  const errorMessageAroundAreaElement = document.querySelector('.error');
 
-  errorMessageAroundArea.addEventListener('click', () => {
+  errorMessageAroundAreaElement.addEventListener('click', () => {
     closeErrorMessage();
   });
 
   document.addEventListener('keydown', onErrorMessageEscKeydown);
 };
-
 
 export {renderSuccessMessage, renderErrorMessage};

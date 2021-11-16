@@ -1,6 +1,6 @@
-const uploadPicture = document.querySelector('.img-upload__preview').children;
+const uploadPictureElement = document.querySelector('.img-upload__preview').children;
 
-const closePicture = function (pictureBarrel, commentsBarrel) {
+const closePicture = (pictureBarrel, commentsBarrel) => {
   pictureBarrel.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
@@ -10,10 +10,10 @@ const closePicture = function (pictureBarrel, commentsBarrel) {
   }
 };
 
-const closeForm = function (form) {
+const closeForm = (form) => {
   form.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  uploadPicture[0].src = '';
+  uploadPictureElement[0].src = '';
 };
 
 export {closePicture, closeForm};
