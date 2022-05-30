@@ -1,4 +1,4 @@
-3rd personal project "Pink".
+3rd personal project "Kekstagram".
 
 Tools & technologies:
 
