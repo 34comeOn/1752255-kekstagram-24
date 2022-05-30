@@ -1,3 +1,15 @@
+3rd personal project "Pink".
+
+Tools & technologies:
+
+- Git
+- JS
+- noUiSlider
+- Lodash
+- Fetch API
+
+
+
 # Личный проект «Кекстаграм»
 
 * Студент: [Михаил Барабанов](https://up.htmlacademy.ru/javascript/24/user/1752255).
